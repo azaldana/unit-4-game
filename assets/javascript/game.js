@@ -9,17 +9,43 @@ $(document).ready(function(){
     var greenJewel;
     var yellowJewel;
 
+function resetGame(){
+    updatedScore = 0;
 
-    resetGame();
+    //creating a while loop to make sure all jewels are random, separate numbers//
+    var i =0;
+    while (i<4){
+        var rand = 1 + Math.floor(Math.random() * 12);
+            if (jewels.indexOf(rand) != -1) {
+                continue;
+            } else {
+                jewels[i] = rand;
+                i++;
+            }
+           
+        } console.log (jewels);
+    
+        redJewel = jewels[0];
+        blueJewel = jewels[1];
+        yellowJewel = jewels[2];
+        greenJewel = jewels[3];
+        computerChoice = 19 + Math.floor(Math.random() * 120);
+        $("#random-number").text(computerChoice);
+        $("#updated-score").text(updatedScore);
+    
+    }
 
 
+resetGame();
+
+    
 var red = $("#red");
 red.on("click", function() {
     updatedScore = updatedScore + redJewel;
     console.log("New user score " + updatedScore);
     $("#updated-score").text(updatedScore);
     statement();
-    })
+})
         
 
 var blue = $("#blue");
@@ -28,7 +54,7 @@ blue.on("click", function() {
     console.log("New user score " + updatedScore);
     $("#updated-score").text(updatedScore);
     statement();
-    })
+})
 
 var yellow = $("#yellow");
 yellow.on("click", function() {
@@ -36,7 +62,7 @@ yellow.on("click", function() {
     console.log("New user score " + updatedScore);
     $("#updated-score").text(updatedScore);
     statement();
-    })
+})
 
 var green = $("#green");
 green.on("click", function() {
@@ -60,25 +86,6 @@ function statement(){
         $("#loss").text("Losses: " + loss);
         resetGame();
     }
-}
-
-
-function resetGame(){
-    updatedScore = 0;
-
-    // while (i<=12){
-    //     i = 1 + Math.floor(Math.random() * 12);
-    //     jewels.push(i);
-    // }
-    redJewel = 1 + Math.floor(Math.random() * 12);
-    blueJewel = 1 + Math.floor(Math.random() * 12);
-    yellowJewel = 1 + Math.floor(Math.random() * 12);
-    greenJewel = 1 + Math.floor(Math.random() * 12);
-    computerChoice = 19 + Math.floor(Math.random() * 120);
-    $("#random-number").text(computerChoice);
-    $("#updated-score").text(updatedScore);
-    console.log("Jewel number: " + redJewel, blueJewel, yellowJewel, greenJewel);
-
 }
 
 });
